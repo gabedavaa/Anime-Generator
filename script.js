@@ -15,13 +15,15 @@ btn.addEventListener("click", async function () {
     const reponse = await fetch("https://api.catboys.com/img");
     const data = await reponse.json();
 
-    btn.disabled = false;
-    btn.innerText = "Get Anime";
+    if (data.artist && data.url) {
+      btn.disabled = false;
+      btn.innerText = "Get Anime";
 
-    animCont.style.display = "block";
-    animImg.src = data.url;
-    animName.innerText = `Artist: ${data.artist}`;
-    // console.log(data);
+      animCont.style.display = "block";
+      animImg.src = data.url;
+      animName.innerText = `Artist: ${data.artist}`;
+      // console.log(data);
+    }
   } catch (error) {
     btn.disabled = false;
     btn.innerText = "Get Anime";
